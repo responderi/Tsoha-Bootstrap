@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Omat tiedot</h1>
+  <form>
+    <div class="form-group">
+      <label>Uusi salasana</label>
+      <input type="password" class="form-control" id="uusisalasana1" placeholder="Uusi salasana">
+    </div>
+    <div class="form-group">
+      <label>Anna uusi salasana uudestaan</label>
+      <input type="password" class="form-control" id="uusisalasana2" placeholder="Anna uusi salasana uudestaan">
+    </div>
+    <div class="form-group">
+      <label>Vahvista muutokset antamalla nykyinen salasanasi</label>
+      <input type="password" class="form-control" id="nykyinensalasana" placeholder="Nykyinen salasana">
+    </div>
+    <div class="form-group">
+    <a href="account/ownvotes" class="btn btn-default">Omat äänestykset</a>
+    </div>
+    <button type="submit" class="btn btn-success">Vahvista muutokset</button>
+    <button type="submit" class="btn btn-danger">Poista käyttäjä</button>
+  </form>
+{% endblock %}
