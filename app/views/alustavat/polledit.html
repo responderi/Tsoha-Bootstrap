@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Äänestyksen muokkaus</h1>
+  </div>
+  <form>
+  	<div class="form-group">
+  		<label>Äänestyksen aihe</label>
+  		<input class="form-control" value="ELEAGUE Major 2017" type="text" maxlength="100">
+  	</div>
+  	<div class="form-group">
+  		<label>Kuvaus</label>
+  		<input class="form-control" value="Kuka semifinalisteista voittaa vuoden 2017 ELEAGUE majorin?" type="text" maxlength="500">
+  	</div>
+  	<div class="form-group">
+  		<label>Alkamisaika (DD.MM.YYYY HH:MM)</label>
+  		<input class="form-control" value="25.01.2017 00:00" type="datetime-local">
+  	</div>
+  	<div class="form-group">
+  		<label>Päättymisaika (DD.MM.YYYY HH:MM)</label>
+  		<input class="form-control" value="16.02.2017 00:00" type="datetime-local">
+  	</div>
+  	<div class="form-group">
+  		<label>Vaihtoehdon 1 nimi ja kuvaus:</label>
+  		<input class="form-control" value="NAVI" type="text" maxlength="100">
+  		<input class="form-control" value="Selkeä ennakkosuosikki turnaukseen lähdettäessä" type="text" maxlength="200">
+  	</div>
+  	<div class="form-group">
+  		<label>Vaihtoehdon 2 nimi ja kuvaus:</label>
+  		<input class="form-control" value="Virtus Pro" type="text" maxlength="100">
+  		<input class="form-control" value="Vahva suorittaja LAN-turnauksissa" type="text" maxlength="200">
+  	</div>
+  	<div class="form-group">
+  		<label>Vaihtoehdon 3 nimi ja kuvaus:</label>
+  		<input class="form-control" value="Astralis" type="text" maxlength="100">
+  		<input class="form-control" value="Epävakaa tanskalaisviisikko, joka pursuaa potentiaalia" type="text" maxlength="200">
+  	</div>
+  	<div class="form-group">
+  		<label>Vaihtoehdon 4 nimi ja kuvaus:</label>
+  		<input class="form-control" value="Faze" type="text" maxlength="100">
+  		<input class="form-control" value="Suomalaisen Aleksi Jallin tähdittämä yllättäjä" type="text" maxlength="200">
+  	</div>
+  	<div class="form-group">
+  		<button type="button" class="btn btn-default">Lisää vaihtoehto</button>
+  	</div>
+  	<div class="form-group">
+  		<button type="button" class="btn btn-success">Vahvista muutokset</button>
+  	</div>
+  </form>
+{% endblock %}
