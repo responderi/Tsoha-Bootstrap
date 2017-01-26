@@ -39,3 +39,7 @@
   $routes->get('/votepage', function(){
     HelloWorldController::votepage();
   });
+
+  $routes->get('/results', function(){
+    HelloWorldController::results();
+  });

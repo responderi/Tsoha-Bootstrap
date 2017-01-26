@@ -43,4 +43,8 @@
     public static function votepage(){
       View::make('alustavat/votepage.html');
     }
+
+    public static function results(){
+      View::make('alustavat/results.html');
+    }
   }
