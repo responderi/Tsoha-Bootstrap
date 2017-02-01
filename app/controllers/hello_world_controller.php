@@ -9,7 +9,10 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      View::make('helloworld.html');
+      $presidentti = Poll::find(1);
+      $polls = Poll::all();
+      Kint::dump($presidentti);
+      Kint::dump($polls);
     }
 
     public static function polls(){
