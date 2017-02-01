@@ -1,7 +1,11 @@
 <?php
 	
 	class Poll extends BaseModel{
-		public $id, $name, $description, $start_time, $end_time;
+		public $id;
+		public $name;
+		public $description;
+		public $start_time;
+		public $end_time;
 		public function __construct($attributes){
 			parent::__construct($attributes);
 		}
@@ -30,7 +34,7 @@
 			$row = $query->fetch();
 
 			if($row){
-				$poll new Poll(array(
+				$poll = new Poll(array(
 					'id' => $row['id'],
 					'name' => $row['name'],
 					'description' => $row['description'],
@@ -41,5 +45,12 @@
 
 			}
 			return null;
+		}
+
+		public function save(){
+			$query = DB::connection()->prepare('INSERT INTO Poll (name, description, start_time, end_time) VALUES (:name, :description, :start_time, :end_time) RETURNING id');
+			$query->execute(array('name' => $this->name, 'description' => $this->description, 'start_time' => $this->start_time, 'end_time' => $this->end_time));
+			$row = $query->fetch();
+			$this->id = $row['id'];
 		}
 	}

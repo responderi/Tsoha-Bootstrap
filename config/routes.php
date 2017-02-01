@@ -23,3 +23,19 @@
   $routes->get('/login', function(){
     HelloWorldController::login();
   });
+
+  $routes->get('/poll', function(){
+    PollController::index();
+  });
+
+  $routes->post('/poll', function(){
+    PollController::store();
+  });
+
+  $routes->get('/poll/new', function(){
+    PollController::create();
+  });
+
+  $routes->get('/poll/:id', function($id){
+    PollController::votepage($id);
+  });
