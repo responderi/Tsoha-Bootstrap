@@ -16,3 +16,9 @@ Yleisiä linkkejä:
 ## Työn aihe
 
 [Äänestys](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Aanestys.html) 
+
+## Ajankohtaista
+
+Tällä hetkellä työn alla:
+* Äänestysmekaniikan toteuttaminen
+* Kuinka saada esittelysivulle muutkin kuin vain taulukon ensimmäinen vaihtoehto
