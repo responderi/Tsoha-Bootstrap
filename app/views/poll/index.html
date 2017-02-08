@@ -10,7 +10,6 @@
 		<thead>
 			<tr>
 				<th>Äänestyksen aihe</th>
-				<th>Kuvaus</th>
 				<th>Lisätty</th>
 				<th>Sulkeutuu</th>
 				<th></th>
@@ -22,11 +21,9 @@
 			{% for poll in polls %}
 				<tr>
 					<td><a href="{{base_path}}/poll/{{poll.id}}">{{poll.name}}</a></td>
-					<td>{{poll.description}}</td>
 					<td>{{poll.start_time}}</td>
 					<td>{{poll.end_time}}</td>
 					<th><a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/edit">Muokkaa</a></th>
-					<th><a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/delete">Poista</a></th>
 				</tr>
 			{% endfor %}
 		</tbody>

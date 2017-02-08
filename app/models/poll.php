@@ -6,9 +6,53 @@
 		public $description;
 		public $start_time;
 		public $end_time;
+
 		public function __construct($attributes){
 			parent::__construct($attributes);
+			/*$this->validators = array('validate_name', 'validate_description', 'validate_start_time', 'validate_end_time');*/
 		}
+
+		/*public function validate_name(){
+			$errors = array();
+			if($this->name == ''||$this->name==null){
+				$errors[] = 'Nimi ei saa olla tyhjä.';
+			}
+			if(strlen($this->name) < 4){
+				$errors[] = 'Nimen pituuden tulee olla vähintään neljä merkkiä.';
+			}
+			if(strlen($this->name) > 100){
+				$errors[] = 'Nimen pituus ei saa ylittää sataa merkkiä.';
+			}
+
+			return $errors;
+		}
+
+		public function validate_description(){
+			$errors = array();
+			if(strlen($this->name) > 500){
+				$errors[] = 'Kuvauksen pituus ei saa ylittää 500 merkkiä.';
+			}
+
+			return $errors;
+		}
+
+		public function validate_start_time(){
+			$errors = array();
+			$correctFormat = date_parse_from_format('dd.mm.YYYY', $this->start_time);
+			if($correctFormat['error_count'] > 0){
+				$errors[] = 'Äänestyksen alkamisajan tulee olla muodossa dd.mm.YYYY';
+			}
+			return $errors;
+		}
+
+		public function validate_end_time(){
+			$errors = array();
+			$correctFormat = date_parse_from_format('dd.mm.YYYY', $this->end_time);
+			if($correctFormat['error_count'] > 0){
+				$errors[] = 'Äänestyksen loppumisajan tulee olla muodossa dd.mm.YYYY';
+			}
+			return $errors;
+		}*/
 
 		public static function all(){
 			$query = DB::connection()->prepare('SELECT * FROM Poll');
@@ -52,5 +96,15 @@
 			$query->execute(array('name' => $this->name, 'description' => $this->description, 'start_time' => $this->start_time, 'end_time' => $this->end_time));
 			$row = $query->fetch();
 			$this->id = $row['id'];
+		}
+
+		public function update(){
+			$query = DB::connection()->prepare('UPDATE Poll SET name=:name,description=:description,start_time=:start_time,end_time=:end_time where id = :id');
+			$query->execute(array('id' => $this->id, 'name' => $this->name, 'description' => $this->description, 'start_time' => $this->start_time, 'end_time' => $this->end_time));
+		}
+
+		public function destroy(){
+			$query = DB::connection()->prepare('DELETE FROM Poll WHERE id = :id');
+			$query->execute(array($this->id));
 		}
 	}

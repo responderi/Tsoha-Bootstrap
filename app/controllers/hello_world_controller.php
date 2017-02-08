@@ -8,10 +8,9 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-      $presidentti = Poll::find(1);
-      $polls = Poll::all();
-      Kint::dump($presidentti);
-      Kint::dump($polls);
+      $blank = new Poll(array('name' => '', 'description' => 'Testaus', 'start_time' => '11.01.2017', 'end_time' => '11.03.2017'));
+      $errors = $blank->errors();
+      Kint::dump($errors);
     }
 
     public static function polls(){

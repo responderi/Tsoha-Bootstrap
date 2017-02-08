@@ -22,10 +22,10 @@
 					'name' => $row['name'],
 					'description' => $row['description']
 				));
-				return $options;
+				
 
 			}
-			return null;
+			return $options;
 		}
 
 		public static function findByOption($id){

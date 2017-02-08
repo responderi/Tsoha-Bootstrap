@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="page-header">
-    <h2>Luo äänestys</h2>
+    <h2>Muokkaa äänestystä</h2>
   </div>
 
   <form method="post" action="{{base_path}}/poll">
   	<div class="form-group">
   		<label>Äänestyksen nimi:</label>
-  		<input name="name" class="form-control" type="text" maxlength="100">
+  		<input name="name" class="form-control" type="text" maxlength="100" placeholder="{{poll.name}}">
   	</div>
 
   	<div class="form-group">
   		<label>Äänestyksen kuvaus:</label>
-  		<input name="description" class="form-control" type="text" maxlength="500">
+  		<input name="description" class="form-control" type="text" maxlength="500" placeholder="{{poll.description}}">
   	</div>
 
   	<div class="form-group">
-  		<label>Alkamisaika (DD.MM.YYYY):</label>
+  		<label>Alkamisaika:</label>
   		<input type="date" name="start_time">
-  		<label>Päättymisaika (DD.MM.YYYY):</label>
+  		<label>Päättymisaika:</label>
   		<input type="date" name="end_time">
   	</div>
     
@@ -38,7 +38,10 @@
       <button type="button" class="btn btn-primary">Lisää uusi vaihtoehto</button>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-success">Luo äänestys</button>
+      <button type="submit" class="btn btn-success">Päivitä äänestystä!</button>
     </div>
+  </form>
+  <form method="post" action="{{base_path}}/poll/{{poll.id}}/destroy" style="display: inline-block;">
+  <button type="submit" class="btn btn-danger">Poista</button>
   </form>
 {% endblock %}
