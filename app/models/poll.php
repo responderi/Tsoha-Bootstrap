@@ -9,7 +9,7 @@
 
 		public function __construct($attributes){
 			parent::__construct($attributes);
-			$this->validators = array('validate_name', 'validate_description');
+			$this->validators = array('validate_name', 'validate_description'/*, 'validate_start_time', 'validate_end_time'*/);
 		}
 
 
@@ -74,4 +74,12 @@
 		public function validate_description(){
 			return $this->validate_description_length('Kuvaus', $this->description, 500);
 		}
+
+		/*public function validate_start_time(){
+			return $this->validate_times('Alkamisaika', $this->start_time);
+		}
+
+		public function validate_end_time(){
+			return $this->validate_times('Päättymisaika', $this->end_time);
+		}*/
 	}

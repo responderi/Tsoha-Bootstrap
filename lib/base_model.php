@@ -54,7 +54,9 @@
       return $errors;
     }
 
-    /*public function validate_times($)
-      En ole vielä aivan varma kuinka toteutan alkamis ja loppumisajan validoinnin  
-    */
+     /*public function validate_times($stringtype, $string){
+      $errors = array();
+
+      return $errors;
+    }*/
   }
