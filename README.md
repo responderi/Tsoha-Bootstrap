@@ -10,9 +10,6 @@ Yleisiä linkkejä:
 
 Tällä hetkellä työn alla:
 * Äänestysmekaniikan toteuttaminen
-* Validointi ja niistä aiheutuvat virhetilanteet aiheuttivat suurta päänvaivaa jotka ovat vielä työn alla
-* Kirjautumisen kanssa on vielä pieniä ongelmia jotka myös ovat työn alla tällä hetkellä
-* Muokkaus ei vielä toimi oikein
 
 ## Tietokantasovelluksen staattiset mallisivut
 
