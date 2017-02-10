@@ -15,13 +15,13 @@
 				'end_time' => $params['end_time']
 			);
 			$poll = new Poll($attributes);
-			/*$errors = $poll->errors();
-			if(count($errors) == 0){*/
+			$errors = $poll->errors();
+			if(count($errors) == 0){
 				$poll->save();
 				Redirect::to('/poll/' . $poll->id, array('message' => 'Äänestys lisätty!'));	
-			/*}else{
-				Redirect::to('/poll/new', array('errors' => $errors, 'attributes' => $attributes));
-			}*/
+			}else{
+				View::make('poll/new.html', array('errors' => $errors, 'attributes' => $attributes));
+			}
 		}
 
 		public static function create(){
@@ -42,24 +42,26 @@
 
 		public static function update($id){
 			$params = $_POST;
-			$poll = new Poll(array(
+			$attributes = array(
+				'id' => $id,
 				'name' => $params['name'],
 				'description' => $params['description'],
 				'start_time' => $params['start_time'],
 				'end_time' => $params['end_time']
-			));
-			/*$errors = $poll->errors();
-			if(count($errors) == 0){*/
+			);
+			$poll = new Poll($attributes);
+			$errors = $poll->errors();
+			if(count($errors) > 0){
+				View::make('poll/edit.html', array('errors' => $errors, 'attributes' => $attributes));	
+			}else{
 				$poll->update();
-				Redirect::to('/poll' . $poll->id, array('message' => 'Äänestystä muokattu!'));	
-			/*}else{
-				Redirect::to('/poll/edit', array('errors' => $errors));
-			}*/
+				Redirect::to('/poll/' . $poll->id, array('message' => 'Muokkaus onnistui!'));
+			}
 		}
 
 		public static function destroy($id){
 			$poll = new Poll(array('id' => $id));
 			$poll->destroy();
-			Redirect::to('/poll');
+			Redirect::to('/poll', array('message' => 'Äänestys poistettu!'));
 		}
 	}

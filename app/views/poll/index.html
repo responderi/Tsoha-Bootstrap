@@ -1,18 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
+{% if message %}
+	<div class="alert alert-success">
+  	{{message}}
+	</div>
+{% endif %}
   <div class="page-header">
     <h2>Äänestykset</h2>
   </div>
+  	{% if user_logged_in %}
 	<p>
     	<a href="{{base_path}}/poll/new" class="btn btn-primary">Luo äänestys</a>
   	</p>
+  	{% endif %}
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
 				<th>Äänestyksen aihe</th>
 				<th>Lisätty</th>
 				<th>Sulkeutuu</th>
+				{% if user_logged_in %}
 				<th></th>
+				{% endif %}
 			</tr>
 		</thead>
 		
@@ -23,7 +32,9 @@
 					<td><a href="{{base_path}}/poll/{{poll.id}}">{{poll.name}}</a></td>
 					<td>{{poll.start_time}}</td>
 					<td>{{poll.end_time}}</td>
-					<th><a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/edit">Muokkaa</a></th>
+					{% if user_logged_in %}
+					<td><a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/edit">Muokkaa</a></td>
+					{% endif %}
 				</tr>
 			{% endfor %}
 		</tbody>

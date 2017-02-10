@@ -41,32 +41,25 @@ class Operator extends BaseModel{
 				));
 				return $operator;
 
+			}else{
+				return null;
 			}
 		}
 
-		public static function findName($name){
-			$query = DB::connection()->prepare('SELECT * FROM Operator WHERE name = :name');
-			$query->execute(array('name' => $name));
+		public static function authenticate($name, $password){
+			$query = DB::connection()->prepare('SELECT * FROM Operator' . ' WHERE name=:name AND password=:password ' . 'LIMIT 1');
+			$query->execute(array('name' => $name, 'password' => $password));
 			$row = $query->fetch();
-
 			if($row){
 				$operator = new Operator(array(
 					'id' => $row['id'],
 					'name' => $row['name'],
-					'password' => $row['password'],
-					'owner' => $row['owner']
-				));
-				if(isset($operator)){
-					return $operator;
-				}
-
+					'password' => $row['password']
+					));
+				return $operator;
+			}else{
+				return null;
 			}
 		}
 
-		public function save(){
-			$query = DB::connection()->prepare('INSERT INTO Operator (name, password, owner) VALUES (:name, :password, :owner) RETURNING id');
-			$query->execute(array('name' => $this->name, 'password' => $this->password, 'owner' => $this->owner));
-			$row = $query->fetch();
-			$this->id = $row['id'];
-		}
-	}
+}

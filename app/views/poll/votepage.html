@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+{% if message %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+{% endif %}
   <div class="page-header">
     <h2>Äänestyksen tiedot</h2>
   </div>
@@ -36,4 +41,8 @@
       {% endfor %}
        </tbody>
   </table>
+  <a href="{{base_path/poll}}" class="btn btn-default">Palaa takaisin äänestyksiin</a>
+  {% if user_logged_in %}
+    <a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/edit">Muokkaa</a>
+  {% endif %}
 {% endblock %}

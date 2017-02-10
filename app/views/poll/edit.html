@@ -1,25 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
+
+  {% if errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for error in errors %}
+      <li>{{error}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
   <div class="page-header">
     <h2>Muokkaa äänestystä</h2>
   </div>
 
-  <form method="post" action="{{base_path}}/poll">
+  <form method="post" action="{{base_path}}/poll/{{poll.id}}/edit">
   	<div class="form-group">
   		<label>Äänestyksen nimi:</label>
-  		<input name="name" class="form-control" type="text" maxlength="100" placeholder="{{poll.name}}">
+  		<input name="name" class="form-control" type="text" maxlength="100" value="{{poll.name}}">
   	</div>
 
   	<div class="form-group">
   		<label>Äänestyksen kuvaus:</label>
-  		<input name="description" class="form-control" type="text" maxlength="500" placeholder="{{poll.description}}">
+  		<input name="description" class="form-control" type="text" maxlength="500" value="{{poll.description}}">
   	</div>
 
+    <div>
+      <label>Muista asettaa alkamis- ja päättymisaika uudelleen!</label>
+    </div>
   	<div class="form-group">
   		<label>Alkamisaika:</label>
-  		<input type="date" name="start_time">
+  		<input type="date" name="start_time" value="{{poll.start_time}}">
   		<label>Päättymisaika:</label>
-  		<input type="date" name="end_time">
+  		<input type="date" name="end_time" value="{{poll.end_time}}">
   	</div>
     
     <div class="form-group">
@@ -37,11 +50,18 @@
     <div class="form-group">
       <button type="button" class="btn btn-primary">Lisää uusi vaihtoehto</button>
     </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-success">Päivitä äänestystä!</button>
+    <div>
+    <a href="{{base_path/poll}}" class="btn btn-default">Palaa takaisin äänestyksiin</a>
     </div>
+    {% if user_logged_in %}
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Päivitä</button>
+    </div>
+    {% endif %}
   </form>
+  {% if user_logged_in %}
   <form method="post" action="{{base_path}}/poll/{{poll.id}}/destroy" style="display: inline-block;">
   <button type="submit" class="btn btn-danger">Poista</button>
   </form>
+  {% endif %}
 {% endblock %}

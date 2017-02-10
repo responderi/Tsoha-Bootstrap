@@ -9,50 +9,9 @@
 
 		public function __construct($attributes){
 			parent::__construct($attributes);
-			/*$this->validators = array('validate_name', 'validate_description', 'validate_start_time', 'validate_end_time');*/
+			$this->validators = array('validate_name', 'validate_description');
 		}
 
-		/*public function validate_name(){
-			$errors = array();
-			if($this->name == ''||$this->name==null){
-				$errors[] = 'Nimi ei saa olla tyhjä.';
-			}
-			if(strlen($this->name) < 4){
-				$errors[] = 'Nimen pituuden tulee olla vähintään neljä merkkiä.';
-			}
-			if(strlen($this->name) > 100){
-				$errors[] = 'Nimen pituus ei saa ylittää sataa merkkiä.';
-			}
-
-			return $errors;
-		}
-
-		public function validate_description(){
-			$errors = array();
-			if(strlen($this->name) > 500){
-				$errors[] = 'Kuvauksen pituus ei saa ylittää 500 merkkiä.';
-			}
-
-			return $errors;
-		}
-
-		public function validate_start_time(){
-			$errors = array();
-			$correctFormat = date_parse_from_format('dd.mm.YYYY', $this->start_time);
-			if($correctFormat['error_count'] > 0){
-				$errors[] = 'Äänestyksen alkamisajan tulee olla muodossa dd.mm.YYYY';
-			}
-			return $errors;
-		}
-
-		public function validate_end_time(){
-			$errors = array();
-			$correctFormat = date_parse_from_format('dd.mm.YYYY', $this->end_time);
-			if($correctFormat['error_count'] > 0){
-				$errors[] = 'Äänestyksen loppumisajan tulee olla muodossa dd.mm.YYYY';
-			}
-			return $errors;
-		}*/
 
 		public static function all(){
 			$query = DB::connection()->prepare('SELECT * FROM Poll');
@@ -106,5 +65,13 @@
 		public function destroy(){
 			$query = DB::connection()->prepare('DELETE FROM Poll WHERE id = :id');
 			$query->execute(array($this->id));
+		}
+
+		public function validate_name(){
+			return $this->validate_name_length('Nimi', $this->name, 3, 100);
+		}
+
+		public function validate_description(){
+			return $this->validate_description_length('Kuvaus', $this->description, 500);
 		}
 	}
