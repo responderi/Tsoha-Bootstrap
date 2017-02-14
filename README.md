@@ -17,7 +17,7 @@ Tällä hetkellä työn alla:
 * [Etusivu](http://rovarje.users.cs.helsinki.fi/aanestys/)
 * [Kirjautumissivu](http://rovarje.users.cs.helsinki.fi/aanestys/login)
 * [Äänestyksien listaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/polls)
-* [Äänestyksien muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/polledit)
+* [Äänestyksien muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/2/edit)
 * [Äänestyksien esittelysivu](http://rovarje.users.cs.helsinki.fi/aanestys/pollpage)
 
 ## Työn aihe
