@@ -1,7 +1,5 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
-INSERT INTO Operator (name, password) VALUES ('aanestaja', 'aanestaja123');
-INSERT INTO Operator (name, password, owner) VALUES ('tekija', 'tekija123', true);
-INSERT INTO Operator (name, password) VALUES ('yllatys', 'yllatys123');
+INSERT INTO Operator (name, password) VALUES ('tekija', 'tekija123');
 INSERT INTO Poll (name, description, start_time, end_time) VALUES ('Trump vai Clinton?', 'Trump vai Clinton, kumman käsin luotat maailman tulevaisuuden?', '25.01.2017', '21.02.2017');
 INSERT INTO Poll (name, description, start_time, end_time) VALUES ('ELEAGUE Major 2017', 'Kuka semifinalisteista voittaa vuoden 2017 ELEAGUE Majorin?', '25.01.2017', '22.02.2017');
 INSERT INTO Option (poll_id, name, description) VALUES (1, 'Trump', 'Tupee-keisari');

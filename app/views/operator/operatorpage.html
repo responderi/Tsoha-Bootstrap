@@ -13,18 +13,13 @@
 					<td class="row_title">Käyttäjän nimi:</td>
         			<td>{{operator.name}}</td>
       			</tr>
-     			<tr>
-       				<td class="row_title">Ylläpitäjä:</td>
-       				{% if operator.owner %}
-      					<td>Kyllä</td>
-      				{% else %}
-      					<td>Ei</td>
-      				{% endif %}
-      			</tr>
     		</table>
    		</div>
    		<div>
+      {% if user_logged_in.id == operator.id %}
    		<a class="btn btn-primary" href="{{base_path}}/operator/{{operator.id}}/edit">Muokkaa tietojasi</a>
-   		{% if user_logged_in.owner %}<a class="btn btn-primary" href="{{base_path}}/operator/{{operator.id}}/delete">Poista tämä käyttäjä</a>{% endif %}
+      {% else %}
+      <button type="btn btn-primary" disabled>Voit muokata vain omia tietojasi</button>
+   		{% endif %}
    		</div>
 {% endblock %}

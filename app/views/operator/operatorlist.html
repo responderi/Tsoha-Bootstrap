@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="page-header">
+    <h2>Käyttäjät</h2>
+  </div>
+  	{% if user_logged_in %}
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Käyttäjän nimi</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+		<!--käyttäjien listaus-->
+			{% for operator in operators %}
+				<tr>
+					<td>>{{operator.name}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{% else %}
+	<div>
+		<li>Kirjaudu nähdäksesi kaikki käyttäjät.</li>
+	</div>
+	<div>
+		<a href="login" class="btn btn-default">Kirjaudu sisään</a>
+	</div>
+	{% endif %}
+  
+{% endblock %}

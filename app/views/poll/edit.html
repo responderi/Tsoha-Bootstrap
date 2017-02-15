@@ -34,18 +34,18 @@
   		<label>Päättymisaika:</label>
   		<input type="date" name="end_time" value="{{poll.end_time}}">
   	</div>
-    
+
     <div class="form-group">
       <label>Vaihtoehdon nimi:</label>
-      <input type="text" maxlength="100">
+      <input name="name" type="text" maxlength="100">
       <label>Vaihtoehdon kuvaus:</label>
-      <input type="text" maxlength="200">
+      <input name="description" type="text" maxlength="200">
     </div>
     <div class="form-group">
       <label>Vaihtoehdon nimi:</label>
-      <input type="text" maxlength="100">
+      <input name="name" type="text" maxlength="100">
       <label>Vaihtoehdon kuvaus:</label>
-      <input type="text" maxlength="200">
+      <input name="description" type="text" maxlength="200">
     </div>
     <div class="form-group">
       <button type="button" class="btn btn-primary">Lisää uusi vaihtoehto</button>
@@ -58,7 +58,7 @@
   </form>
   {% if user_logged_in %}
   <form method="post" action="{{base_path}}/poll/{{poll.id}}/destroy" style="display: inline-block;">
-  <button type="submit" class="btn btn-danger">Poista</button>
+   <button type="submit" class="btn btn-danger">Poista</button>
   </form>
   {% endif %}
 {% endblock %}

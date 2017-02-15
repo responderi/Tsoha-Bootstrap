@@ -43,7 +43,15 @@
             <li><a href="{{base_path}}/poll">Äänestykset</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          {% if user_logged_in %}
+            <li><a href="{{base_path}}/operator/{{user_logged_in.id}}" class="btn btn-default">Omat tiedot</a></li>
+            <li><form method="post" action="{{base_path}}/logout">
+              <button type="submit" class="btn btn-default">Kirjaudu ulos</button>
+            </form></li>
+          {% else %}
             <li><a href="{{base_path}}/login">Kirjaudu sisään</a></li>
+            <li><a href="{{base_path}}/register">Rekisteröidy</a></li>
+          {% endif %}
           </ul>
         </div>
       </div>

@@ -2,8 +2,7 @@
 CREATE TABLE Operator(
 	id SERIAL PRIMARY KEY,
 	name varchar(15) NOT NULL,
-	password varchar(30) NOT NULL,
-	owner boolean NOT NULL DEFAULT FALSE 
+	password varchar(30) NOT NULL
 );
 
 CREATE TABLE Poll(
@@ -21,7 +20,7 @@ CREATE TABLE PollAndOperator(
 
 CREATE TABLE Option(
 	id SERIAL PRIMARY KEY,
-	poll_id INTEGER REFERENCES Poll(id),
+	poll_id INTEGER REFERENCES Poll(id) ON DELETE CASCADE NOT NULL,
 	name varchar(100) NOT NULL,
 	description varchar(200),
 	votes_count INTEGER
@@ -29,7 +28,7 @@ CREATE TABLE Option(
 
 CREATE TABLE Vote(
 	id SERIAL PRIMARY KEY,
-	poll_id INTEGER REFERENCES Poll(id),
-	option_id INTEGER REFERENCES Option(id),
+	poll_id INTEGER REFERENCES Poll(id) ON DELETE CASCADE NOT NULL,
+	option_id INTEGER REFERENCES Option(id) ON DELETE CASCADE NOT NULL,
 	timegiven TIMESTAMP
 );
