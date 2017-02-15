@@ -12,13 +12,19 @@ Yleisiä linkkejä:
 Tällä hetkellä työn alla:
 * Äänestysmekaniikan toteuttaminen
 
-## Tietokantasovelluksen staattiset mallisivut
+## Tietokantasovelluksen sivut
 
+* HUOM! Seuraavat sivut vaativat kirjautumista kaiken toiminnallisuuden nähdäkseen:
 * [Etusivu](http://rovarje.users.cs.helsinki.fi/aanestys/)
 * [Kirjautumissivu](http://rovarje.users.cs.helsinki.fi/aanestys/login)
-* [Äänestyksien listaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/polls)
-* [Äänestyksien muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/2/edit)
-* [Äänestyksien esittelysivu](http://rovarje.users.cs.helsinki.fi/aanestys/pollpage)
+* [Rekisteröitymissivu](http://rovarje.users.cs.helsinki.fi/aanestys/register)
+* [Äänestyksien listaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll)
+* [Äänestyksien luontisivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/new)
+* [Äänestyksien muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/1/edit)
+* [Äänestyksien esittelysivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/1)
+* [Käyttäjän omasivu](http://rovarje.users.cs.helsinki.fi/aanestys/operator/1)
+* [Käyttäjän muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/operator/1/edit)
+* [Käyttäjien listaussivu (tälle ei ole vielä oikeata käyttöä keksitty)](http://rovarje.users.cs.helsinki.fi/aanestys/operators) 
 
 ## Työn aihe
 
