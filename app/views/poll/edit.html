@@ -30,26 +30,30 @@
     </div>
   	<div class="form-group">
   		<label>Alkamisaika:</label>
-  		<input type="date" name="start_time" value="{{poll.start_time}}">
+  		<input class="form-control" type="date" name="start_time" value="{{poll.start_time}}">
   		<label>Päättymisaika:</label>
-  		<input type="date" name="end_time" value="{{poll.end_time}}">
+  		<input class="form-control" type="date" name="end_time" value="{{poll.end_time}}">
   	</div>
 
-    <div class="form-group">
-      <label>Vaihtoehdon nimi:</label>
-      <input name="name" type="text" maxlength="100">
-      <label>Vaihtoehdon kuvaus:</label>
-      <input name="description" type="text" maxlength="200">
-    </div>
-    <div class="form-group">
-      <label>Vaihtoehdon nimi:</label>
-      <input name="name" type="text" maxlength="100">
-      <label>Vaihtoehdon kuvaus:</label>
-      <input name="description" type="text" maxlength="200">
-    </div>
-    <div class="form-group">
-      <button type="button" class="btn btn-primary">Lisää uusi vaihtoehto</button>
-    </div>
+    <h2>Vaihtoehdot:</h2>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Vaihtoehdon nimi</th>
+          <th>Kuvaus</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for option in poll.options(poll.id) %}
+        <tr>
+          <td>{{option.name}}</td>
+          <td>{{option.description}}</td>
+          <th><a class="btn btn-default btn-sm" href="{{base_path}}/option/{{option.id}}/edit">Muokkaa</a></th>
+        </tr>
+      {% endfor %}
+       </tbody>
+  </table>
     {% if user_logged_in %}
     <div class="form-group">
       <button type="submit" class="btn btn-success">Päivitä</button>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% if errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for error in errors %}
+      <li>{{error}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+  <div class="page-header">
+    <h2>Uusi vaihtoehto äänestykseen: {{poll.name}}</h2>
+  </div>
+
+  <form method="post" action="{{base_path}}/option/{{poll.id}}/new">
+  	<div class="form-group">
+  		<label>Vaihtoehdon nimi:</label>
+  		<input name="name" class="form-control" type="text" value="{{option.name}}" maxlength="100">
+  	</div>
+
+  	<div class="form-group">
+  		<label>Vaihtoehdon kuvaus:</label>
+  		<input name="description" class="form-control" type="text" value="{{option.description}}" maxlength="200">
+  	</div>
+
+    
+    {% if user_logged_in %}
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Lisää vaihtoehto</button>
+    </div>
+    {% endif %}
+  </form>
+{% endblock %}

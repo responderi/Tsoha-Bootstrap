@@ -9,26 +9,25 @@ CREATE TABLE Poll(
 	id SERIAL PRIMARY KEY,
 	name varchar(100) NOT NULL,
 	description varchar(500),
-	start_time TIMESTAMP,
-	end_time TIMESTAMP
+	creator INTEGER REFERENCES Operator(id) ON DELETE CASCADE,
+	start_time DATE,
+	end_time DATE
 );
 
 CREATE TABLE PollAndOperator(
-	operator_id INTEGER REFERENCES Operator(id),
-	poll_id INTEGER REFERENCES Poll(id)
+	operator_id INTEGER REFERENCES Operator(id) ON DELETE CASCADE,
+	poll_id INTEGER REFERENCES Poll(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Option(
 	id SERIAL PRIMARY KEY,
 	poll_id INTEGER REFERENCES Poll(id) ON DELETE CASCADE NOT NULL,
 	name varchar(100) NOT NULL,
-	description varchar(200),
-	votes_count INTEGER
+	description varchar(200)
 );
 
 CREATE TABLE Vote(
 	id SERIAL PRIMARY KEY,
-	poll_id INTEGER REFERENCES Poll(id) ON DELETE CASCADE NOT NULL,
 	option_id INTEGER REFERENCES Option(id) ON DELETE CASCADE NOT NULL,
 	timegiven TIMESTAMP
 );

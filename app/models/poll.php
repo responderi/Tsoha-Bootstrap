@@ -50,6 +50,23 @@
 			return null;
 		}
 
+		public static function options($id){
+			$query = DB::connection()->prepare('SELECT * FROM Option WHERE Option.poll_id = :id');
+			$query->execute(array('id' => $id));
+			$rows = $query->fetchAll();
+			$options = array();
+
+			foreach($rows as $row){
+				$options[] = new options(array(
+					'id' => $row['id'],
+					'poll_id' => $row['poll_id'],
+					'name' => $row['name'],
+					'description' => $row['description']
+					));
+			}
+			return $options;
+		}
+
 		public function save(){
 			$query = DB::connection()->prepare('INSERT INTO Poll (name, description, start_time, end_time) VALUES (:name, :description, :start_time, :end_time) RETURNING id');
 			$query->execute(array('name' => $this->name, 'description' => $this->description, 'start_time' => $this->start_time, 'end_time' => $this->end_time));

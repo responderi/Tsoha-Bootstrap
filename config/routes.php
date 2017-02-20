@@ -87,3 +87,27 @@
   $routes->get('/operators', function(){
     OperatorController::index();
   });
+
+  $routes->get('/option/:id', function($id){
+    OptionController::index($id);
+  });
+
+  $routes->post('/option/:id/new', function($id){
+    OptionController::store($id);
+  });
+
+  $routes->get('/option/:id/new', function($id){
+    OptionController::create($id);
+  });
+
+  $routes->get('/option/:id/edit', function($id){
+    OptionController::edit($id);
+  });
+
+  $routes->post('/option/:id/edit', function($id){
+    OptionController::update($id);
+  });
+
+  $routes->post('/option/:id/destroy', function($id){
+    OptionController::destroy($id);
+  });
