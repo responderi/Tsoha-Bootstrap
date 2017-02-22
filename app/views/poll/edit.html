@@ -41,15 +41,13 @@
         <tr>
           <th>Vaihtoehdon nimi</th>
           <th>Kuvaus</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
       {% for option in poll.options(poll.id) %}
         <tr>
-          <td>{{option.name}}</td>
+          <td><a href="{{base_path}}/option/{{option.id}}">{{option.name}}</td>
           <td>{{option.description}}</td>
-          <th><a class="btn btn-default btn-sm" href="{{base_path}}/option/{{option.id}}/edit">Muokkaa</a></th>
         </tr>
       {% endfor %}
        </tbody>

@@ -53,10 +53,4 @@
 
       return $errors;
     }
-
-     /*public function validate_times($stringtype, $string){
-      $errors = array();
-
-      return $errors;
-    }*/
   }

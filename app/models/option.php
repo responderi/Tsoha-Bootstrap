@@ -85,6 +85,7 @@
 			$query = DB::connection()->prepare('SELECT COUNT(*) FROM Vote WHERE option_id = :id');
 			$query->execute(array('id' => $id));
 			$row = $query->fetch();
+			return $row[0];
 		}
 
 		public function validate_name(){

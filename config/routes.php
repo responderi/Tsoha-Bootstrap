@@ -48,6 +48,10 @@
     PollController::destroy($id);
   });
 
+  $routes->get('/poll/:id/results', function($id){
+    PollController::results($id);
+  });
+
   $routes->get('/login', function(){
     OperatorController::login();
   });
@@ -110,4 +114,8 @@
 
   $routes->post('/option/:id/destroy', function($id){
     OptionController::destroy($id);
+  });
+
+  $routes->get('/option/:id/vote', function($id){
+    OptionController::vote($id);
   });

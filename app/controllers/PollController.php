@@ -9,11 +9,12 @@
 
 		public static function store(){
 			self::check_logged_in();
-			self::get_user_logged_in();
+			$creator = self::get_user_logged_in();
 			$params = $_POST;
 			$attributes = array(
 				'name' => $params['name'],
 				'description' => $params['description'],
+				'creator' => $creator->id,
 				'start_time' => $params['start_time'],
 				'end_time' => $params['end_time']
 			);
@@ -41,11 +42,23 @@
 			View::make('poll/votepage.html', $arrays);
 		}
 
-		public static function edit($id){
-			self::check_logged_in();
+		public static function results($id){
 			self::get_user_logged_in();
-			$poll = array('poll' => Poll::find($id), 'options' => Options::findByPoll($id));
-			View::make('poll/edit.html', $poll);
+			$poll = Poll::find($id);
+			$options = Options::findByPoll($id);
+			$arrays = array('poll' => $poll, 'options' => $options);
+			View::make('poll/pollresults.html', $arrays);
+		}
+
+		public static function edit($id){
+			$poll = Poll::find($id);
+			self::check_logged_in();
+			$operator = self::get_user_logged_in();
+			if($operator->id == $poll->creator){
+				$poll = array('poll' => Poll::find($id), 'options' => Options::findByPoll($id));
+				View::make('poll/edit.html', $poll);
+			}
+			Redirect::to('/poll/' . $poll->id, array('message' => 'Vain äänestyksen tekijä voi muokata äänestystä!'));
 		}
 
 		public static function update($id){
