@@ -11,6 +11,7 @@ Yleisiä linkkejä:
 
 Tällä hetkellä työn alla:
 * Äänestäjän identifiointi
+* Toistaiseksi vain rekisteröityneet käyttäjät voivat äänestää
 
 ## Tietokantasovelluksen sivut
 
