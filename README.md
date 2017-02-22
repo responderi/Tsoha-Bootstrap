@@ -5,12 +5,12 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://rovarje.users.cs.helsinki.fi/aanestys/)
 * [Linkki dokumentaatiooni](https://github.com/responderi/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 * Sovellukseen voi kirjautua sisään seuraavilla tunnuksilla; username: tekija password: tekija123x
-* Huom! Alkamisajan ja päättymisajan tyhjäksi jättäminen aiheuttaa errorin ja se on tiedostettu! Tämä johtuu siitä, että oikeaa validointi tapaa ei ole vielä lisätty koodiin.
+
 
 ## Ajankohtaista
 
 Tällä hetkellä työn alla:
-* Äänestysmekaniikan toteuttaminen
+* Äänestäjän identifiointi
 
 ## Tietokantasovelluksen sivut
 
