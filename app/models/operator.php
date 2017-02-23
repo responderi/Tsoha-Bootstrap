@@ -60,6 +60,16 @@ class Operator extends BaseModel{
 			return null;
 		}
 
+		public static function findIfVoted($operator_id, $poll_id){
+ 			$query = DB::connection()->prepare('SELECT * FROM PollAndOperator WHERE operator_id = :operator_id AND poll_id = :poll_id');
+ 			$query->execute(array('operator_id'=>$operator_id, 'poll_id'=>$poll_id));
+ 			$rows = $query->fetchAll();
+ 			if($rows){
+ 				return TRUE;
+ 			}
+			return FALSE;
+ 		}
+
 		public static function authenticate($name, $password){
 			$query = DB::connection()->prepare('SELECT * FROM Operator WHERE name=:name AND password=:password LIMIT 1');
 			$query->execute(array('name' => $name, 'password' => $password));

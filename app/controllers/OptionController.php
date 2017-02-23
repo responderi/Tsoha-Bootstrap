@@ -99,7 +99,12 @@
 				Redirect::to('/poll/' . $poll->id, array('message' => 'Äänestys ei ole vielä alkanut!'));
 			}
 
+			if($operator::findIfVoted($operator->id, $poll->id) == TRUE){
+				Redirect::to('/poll/' . $poll->id, array('message' => 'Olet jo äänestänyt!'));
+			}
+
 			Vote::saveGivenVote($id);
+			Vote::addConnectedTable($operator->id, $poll->id);
 			Redirect::to('/poll/' . $poll->id . '/results', array('message' => 'Äänesi on rekisteröity!'));
 		}
 	}
