@@ -15,7 +15,10 @@ Tällä hetkellä työn alla:
 
 ## Tietokantasovelluksen sivut
 
-* HUOM! Seuraavat sivut vaativat kirjautumista kaiken toiminnallisuuden nähdäkseen: Äänestyksien luontisivu, Äänestyksien muokkaussivu, Käyttäjän muokkaussivu. Sovellukseen voi kirjautua yllä annetuilla tunnuksilla.
+* HUOM! Seuraavat sivut vaativat kirjautumista kaiken toiminnallisuuden nähdäkseen: Äänestyksien luontisivu, Äänestyksien muokkaussivu, Käyttäjän muokkaussivu, Vaihtoehdon lisäyssivu, Vaihtoehdon muokkaus/poistosivu. Sovellukseen voi kirjautua yllä annetuilla tunnuksilla.
+
+Osiin sivuista pääsee kirjautumisen ja uusien luotujen äänestyksien kautta, joten suosittelen käyttämään [linkkiä sovellukseeni](http://rovarje.users.cs.helsinki.fi/aanestys/).
+
 * [Etusivu](http://rovarje.users.cs.helsinki.fi/aanestys/)
 * [Kirjautumissivu](http://rovarje.users.cs.helsinki.fi/aanestys/login)
 * [Rekisteröitymissivu](http://rovarje.users.cs.helsinki.fi/aanestys/register)
