@@ -17,6 +17,7 @@
 		<thead>
 			<tr>
 				<th>Äänestyksen aihe</th>
+				<th>Äänestyksen lisääjä</th>
 				<th>Lisätty</th>
 				<th>Sulkeutuu</th>
 				{% if user_logged_in %}
@@ -30,6 +31,7 @@
 			{% for poll in polls %}
 				<tr>
 					<td><a href="{{base_path}}/poll/{{poll.id}}">{{poll.name}}</a></td>
+					<td>{{poll.findCreator(poll.id)}}</td>
 					<td>{{poll.start_time}}</td>
 					<td>{{poll.end_time}}</td>
 					{% if user_logged_in %}

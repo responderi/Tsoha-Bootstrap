@@ -68,6 +68,17 @@
 			return $operators;
 		}
 
+		public static function findCreator($id){
+			$query = DB::connection()->prepare('SELECT Operator.name FROM Operator, Poll WHERE Operator.id = Poll.creator AND Poll.id = :id LIMIT 1');
+			$query->execute(array('id' => $id));
+			$row = $query->fetch();
+			if($row){
+				$creator = $row['name'];
+				return $creator;
+			}
+			return null;
+		}
+
 		public static function options($id){
 			$query = DB::connection()->prepare('SELECT * FROM Option WHERE Option.poll_id = :id');
 			$query->execute(array('id' => $id));
