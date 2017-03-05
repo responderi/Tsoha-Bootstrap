@@ -1,45 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
+
 {% if message %}
 	<div class="alert alert-success">
-  	{{message}}
+  		{{message}}
 	</div>
 {% endif %}
-  <div class="page-header">
-    <h2>Äänestykset</h2>
-  </div>
-  	{% if user_logged_in %}
+
+<div class="page-header">
+	<h2>Äänestykset</h2>
+</div>
+
+{% if user_logged_in %}
 	<p>
-    	<a href="{{base_path}}/poll/new" class="btn btn-primary">Luo äänestys</a>
-  	</p>
-  	{% endif %}
-	<table class="table table-striped table-bordered">
-		<thead>
+		<a href="{{base_path}}/poll/new" class="btn btn-primary">Luo äänestys</a>
+	</p>
+{% endif %}
+
+<table class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Äänestyksen aihe</th>
+			<th>Äänestyksen lisääjä</th>
+			<th>Äänestyksen alkamisaika</th>
+			<th>Äänestyksen päättymisaika</th>
+			{% if user_logged_in %}
+			<th></th>
+			{% endif %}
+		</tr>
+	</thead>
+		
+	<tbody>
+	<!--äänestyksien listaus-->
+		{% for poll in polls %}
 			<tr>
-				<th>Äänestyksen aihe</th>
-				<th>Äänestyksen lisääjä</th>
-				<th>Lisätty</th>
-				<th>Sulkeutuu</th>
+				<td><a href="{{base_path}}/poll/{{poll.id}}">{{poll.name}}</a></td>
+				<td>{{poll.find_creator(poll.id)}}</td>
+				<td>{{poll.start_time}}</td>
+				<td>{{poll.end_time}}</td>
 				{% if user_logged_in %}
-				<th></th>
+				<td><a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/edit">Muokkaa</a></td>
 				{% endif %}
 			</tr>
-		</thead>
-		
-		<tbody>
-		<!--äänestyksien listaus-->
-			{% for poll in polls %}
-				<tr>
-					<td><a href="{{base_path}}/poll/{{poll.id}}">{{poll.name}}</a></td>
-					<td>{{poll.findCreator(poll.id)}}</td>
-					<td>{{poll.start_time}}</td>
-					<td>{{poll.end_time}}</td>
-					{% if user_logged_in %}
-					<td><a class="btn btn-default" href="{{base_path}}/poll/{{poll.id}}/edit">Muokkaa</a></td>
-					{% endif %}
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+		{% endfor %}
+	</tbody>
+</table>
   
 {% endblock %}

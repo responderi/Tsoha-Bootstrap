@@ -16,7 +16,8 @@
 				'description' => $params['description'],
 				'creator' => $creator->id,
 				'start_time' => $params['start_time'],
-				'end_time' => $params['end_time']
+				'end_time' => $params['end_time'],
+				'results' => $params['results']
 			);
 			$poll = new Poll($attributes);
 			$errors = $poll->errors();
@@ -37,16 +38,22 @@
 		public static function votepage($id){
 			self::get_user_logged_in();
 			$poll = Poll::find($id);
-			$options = Options::findByPoll($id);
+			$options = Option::find_by_poll($id);
 			$arrays = array('poll' => $poll, 'options' => $options);
 			View::make('poll/votepage.html', $arrays);
 		}
 
 		public static function results($id){
-			self::get_user_logged_in();
+			$operator = self::get_user_logged_in();
 			$poll = Poll::find($id);
-			$options = Options::findByPoll($id);
+			$options = Option::find_by_poll($id);
 			$arrays = array('poll' => $poll, 'options' => $options);
+			if(!($operator->id == $poll->creator)){
+				if($poll->results == 1){
+					View::make('poll/pollresults.html', $arrays);
+				}
+				Redirect::to('/poll/' . $poll->id, array('error' => 'Tulokset eivät ole katsottavissa'));
+			}
 			View::make('poll/pollresults.html', $arrays);
 		}
 
@@ -55,7 +62,7 @@
 			self::check_logged_in();
 			$operator = self::get_user_logged_in();
 			if($operator->id == $poll->creator){
-				$poll = array('poll' => Poll::find($id), 'options' => Options::findByPoll($id));
+				$poll = array('poll' => Poll::find($id), 'options' => Options::find_by_poll($id));
 				View::make('poll/edit.html', $poll);
 			}
 			Redirect::to('/poll/' . $poll->id, array('message' => 'Vain äänestyksen tekijä voi muokata äänestystä!'));
@@ -70,7 +77,8 @@
 				'name' => $params['name'],
 				'description' => $params['description'],
 				'start_time' => $params['start_time'],
-				'end_time' => $params['end_time']
+				'end_time' => $params['end_time'],
+				'results' => $params['results']
 			);
 			$poll = new Poll($attributes);
 			$errors = $poll->errors();

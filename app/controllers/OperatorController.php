@@ -36,6 +36,9 @@ class OperatorController extends BaseController{
 		);
 		$operator = new Operator($attributes);
 		$errors = $operator->errors();
+		if(!($operator->find_name($params['name']) == null)){
+			View::make('operator/edit.html', array('errors' => 'Et voi vaihtaa nimeä jo olemassa olevaan!', 'operator' => $attributes));
+		}
 		if(count($errors) > 0){
 			View::make('operator/edit.html', array('errors' => $errors, 'operator' => $attributes));	
 		}else{
@@ -58,7 +61,7 @@ class OperatorController extends BaseController{
 		$operator = Operator::authenticate($params['name'], $params['password']);
 
 		if(!$operator){
-			View::make('operator/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'name' => $params['name']));
+			View::make('operator/login.html', array('errors' => 'Väärä käyttäjätunnus tai salasana!', 'name' => $params['name']));
 		}else{
 			$_SESSION['operator'] = $operator->id;
 
@@ -79,22 +82,28 @@ class OperatorController extends BaseController{
 	public static function handle_register(){
 		$params = $_POST;
 
-		$operator = new Operator(array(
+		$attributes = array(
 			'name' => $params['name'],
 			'password' => $params['password']
-			));
+		);
+		$operator = new Operator($attributes);
 
+
+		$errors = $operator->errors();
 		if(!($params['password'] == $params['repeatedPassword'])){
-			View::make('operator/register.html', array('error' => 'Annetut salasanat eivät täsmää', 'name' => $params['name']));
+			View::make('operator/register.html', array('errors' => 'Annetut salasanat eivät täsmää', 'name' => $params['name']));
 		} 
 
-		if(!($operator->findName($params['name']) == null)){
-			View::make('operator/register.html', array('error' => 'Annetulla käyttäjänimellä on jo luotu tunnus'));
+		if(!($operator->find_name($params['name']) == null)){
+			View::make('operator/register.html', array('errors' => 'Annetulla käyttäjänimellä on jo luotu tunnus'));
 		}
 
-		$operator->save();
-
-		$_SESSION['operator'] = $operator->id;
-		Redirect::to('/', array('message' => 'Voit nyt äänestää ja luoda omia äänestyksiäsi!'));
+		if(count($errors) > 0){
+			View::make('operator/register.html', array('errors' => $errors, 'operator' => $attributes));
+		}else{
+			$operator->save();
+			$_SESSION['operator'] = $operator->id;
+			Redirect::to('/', array('message' => 'Voit nyt äänestää ja luoda omia äänestyksiäsi!'));
+		}
 	}
 }

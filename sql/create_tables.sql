@@ -11,7 +11,8 @@ CREATE TABLE Poll(
 	description varchar(500),
 	creator INTEGER REFERENCES Operator(id) ON DELETE CASCADE,
 	start_time DATE,
-	end_time DATE
+	end_time DATE,
+	results INTEGER
 );
 
 CREATE TABLE PollAndOperator(

@@ -2,7 +2,7 @@
 
 	class OptionController extends BaseController{
 		public static function index($id){
-			$option = Option::findByOption($id);
+			$option = Option::find_by_option($id);
 			$poll = Poll::all();
 			self::get_user_logged_in();
 			View::make('option/optionpage.html', array('poll' => $poll, 'option' => $option));
@@ -47,7 +47,7 @@
 		public static function edit($id){
 			self::check_logged_in();
 			self::get_user_logged_in();
-			$option = Option::findByOption($id);
+			$option = Option::find_by_option($id);
 			View::make('option/edit.html', $option);
 		}
 
@@ -74,7 +74,7 @@
 		public static function destroy($id){
 			self::check_logged_in();
 			$operator = self::get_user_logged_in();
-			$option = Option::findByOption($id);
+			$option = Option::find_by_option($id);
 			$poll = Poll::find($option->poll_id);
 			if($operator->id == $poll->creator){
 				$option->destroy();
@@ -88,7 +88,7 @@
 		public function vote($id){
 			self::check_logged_in();
 			$operator = self::get_user_logged_in();
-			$option = Option::findByOption($id);
+			$option = Option::find_by_option($id);
 			$poll = Poll::find($option->poll_id);
 
 			if(strtotime(date("Y-m-d")) > strtotime($poll->end_time)){
@@ -99,12 +99,12 @@
 				Redirect::to('/poll/' . $poll->id, array('message' => 'Äänestys ei ole vielä alkanut!'));
 			}
 
-			if($operator::findIfVoted($operator->id, $poll->id) == TRUE){
+			if($operator::find_if_voted($operator->id, $poll->id) == TRUE){
 				Redirect::to('/poll/' . $poll->id, array('message' => 'Olet jo äänestänyt!'));
 			}
 
-			Vote::saveGivenVote($id);
-			Vote::addConnectedTable($operator->id, $poll->id);
-			Redirect::to('/poll/' . $poll->id . '/results', array('message' => 'Äänesi on rekisteröity!'));
+			Vote::save_given_vote($id);
+			Vote::add_connected_table($operator->id, $poll->id);
+			Redirect::to('/poll/' . $poll->id, array('message' => 'Äänesi on rekisteröity!'));
 		}
 	}

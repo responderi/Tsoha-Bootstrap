@@ -7,6 +7,7 @@
 		public $creator;
 		public $start_time;
 		public $end_time;
+		public $results;
 
 		public function __construct($attributes){
 			parent::__construct($attributes);
@@ -27,7 +28,8 @@
 					'description' => $row['description'],
 					'creator' => $row['creator'],
 					'start_time' => $row['start_time'],
-					'end_time' => $row['end_time']
+					'end_time' => $row['end_time'],
+					'results' => $row['results']
 					));
 			}
 			return $polls;
@@ -45,7 +47,8 @@
 					'description' => $row['description'],
 					'creator' => $row['creator'],
 					'start_time' => $row['start_time'],
-					'end_time' => $row['end_time']
+					'end_time' => $row['end_time'],
+					'results' => $row['results']
 				));
 				return $poll;
 
@@ -53,7 +56,7 @@
 			return null;
 		}
 
-		public static function findVoters($id){
+		public static function find_voters($id){
 			$query = DB::connection()->prepare('SELECT Operator.* FROM PollAndOperator, Operator WHERE PollAndOperator.poll_id = :id');
 			$query->execute(array('id' => $id));
 			$rows = $query->fetchAll();
@@ -68,7 +71,7 @@
 			return $operators;
 		}
 
-		public static function findCreator($id){
+		public static function find_creator($id){
 			$query = DB::connection()->prepare('SELECT Operator.name FROM Operator, Poll WHERE Operator.id = Poll.creator AND Poll.id = :id LIMIT 1');
 			$query->execute(array('id' => $id));
 			$row = $query->fetch();
@@ -97,15 +100,15 @@
 		}
 
 		public function save(){
-			$query = DB::connection()->prepare('INSERT INTO Poll (name, description, creator,start_time, end_time) VALUES (:name, :description, :creator, :start_time, :end_time) RETURNING id');
-			$query->execute(array('name' => $this->name, 'description' => $this->description, 'creator' => $this->creator,'start_time' => $this->start_time, 'end_time' => $this->end_time));
+			$query = DB::connection()->prepare('INSERT INTO Poll (name, description, creator,start_time, end_time, results) VALUES (:name, :description, :creator, :start_time, :end_time, :results) RETURNING id');
+			$query->execute(array('name' => $this->name, 'description' => $this->description, 'creator' => $this->creator,'start_time' => $this->start_time, 'end_time' => $this->end_time, 'results' => $this->results));
 			$row = $query->fetch();
 			$this->id = $row['id'];
 		}
 
 		public function update(){
-			$query = DB::connection()->prepare('UPDATE Poll SET name=:name,description=:description,start_time=:start_time,end_time=:end_time where id = :id');
-			$query->execute(array('id' => $this->id, 'name' => $this->name, 'description' => $this->description, 'start_time' => $this->start_time, 'end_time' => $this->end_time));
+			$query = DB::connection()->prepare('UPDATE Poll SET name=:name,description=:description,start_time=:start_time,end_time=:end_time,results=:results where id = :id');
+			$query->execute(array('id' => $this->id, 'name' => $this->name, 'description' => $this->description, 'start_time' => $this->start_time, 'end_time' => $this->end_time, 'results' => $this->results));
 		}
 
 		public function destroy(){

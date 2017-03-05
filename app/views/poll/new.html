@@ -1,41 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
+
 {% if errors %}
   <div class="alert alert-danger">
     <ul>
       {% for error in errors %}
-      <li>{{error}}</li>
+        <li>{{error}}</li>
       {% endfor %}
     </ul>
   </div>
-  {% endif %}
-  <div class="page-header">
-    <h2>Luo äänestys</h2>
+{% endif %}
+
+<div class="page-header">
+  <h2>Luo äänestys</h2>
+</div>
+
+<form method="post" action="{{base_path}}/poll">
+  <div class="form-group">
+  	<label>Äänestyksen nimi:</label>
+  	<input name="name" class="form-control" type="text" value="{{poll.name}}" maxlength="100">
+	</div>
+
+  <div class="form-group">
+  	<label>Äänestyksen kuvaus:</label>
+  	<input name="description" class="form-control" type="text" value="{{poll.description}}" maxlength="500">
   </div>
 
-  <form method="post" action="{{base_path}}/poll">
-  	<div class="form-group">
-  		<label>Äänestyksen nimi:</label>
-  		<input name="name" class="form-control" type="text" value="{{poll.name}}" maxlength="100">
-  	</div>
+  <div class="form-group">
+  	<label>Alkamisaika (DD.MM.YYYY):</label>
+  	<input type="date" name="start_time" value="{{poll.start_time}}">
+		<label>Päättymisaika (DD.MM.YYYY):</label>
+  	<input type="date" name="end_time" value="{{poll.end_time}}">
+  </div>
 
-  	<div class="form-group">
-  		<label>Äänestyksen kuvaus:</label>
-  		<input name="description" class="form-control" type="text" value="{{poll.description}}" maxlength="500">
-  	</div>
-
-  	<div class="form-group">
-  		<label>Alkamisaika (DD.MM.YYYY):</label>
-  		<input type="date" name="start_time" value="{{poll.start_time}}">
-  		<label>Päättymisaika (DD.MM.YYYY):</label>
-  		<input type="date" name="end_time" value="{{poll.end_time}}">
-  	</div>
+  <div class="form-group">
+    <label>Näytetäänkö tulokset kaikille?</label>
+    <select name="results">
+      <option value="1">Kyllä</option>
+      <option value="2">Ei</option>
+    </select>
+  </div>
     
-    <h2>Huom! Voit asettaa vaihtoehdot äänestyksen muokkaussivulta</h2>
-    {% if user_logged_in %}
-    <div class="form-group">
-      <button type="submit" class="btn btn-success">Luo äänestys</button>
-    </div>
-    {% endif %}
-  </form>
+  <h2>Huom! Voit asettaa vaihtoehdot äänestyksen muokkaussivulta</h2>
+  {% if user_logged_in %}
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Luo äänestys</button>
+  </div>
+  {% endif %}
+</form>
 {% endblock %}

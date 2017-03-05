@@ -5,12 +5,13 @@
 		public $poll_id;
 		public $name;
 		public $description;
+		
 		public function __construct($attributes){
 			parent::__construct($attributes);
 			$this->validators = array('validate_name', 'validate_description');
 		}
 
-		public static function findByPoll($poll_id){
+		public static function find_by_poll($poll_id){
 			$query = DB::connection()->prepare('SELECT * FROM Option WHERE poll_id = :poll_id');
 			$query->execute(array('poll_id' => $poll_id));
 			$rows = $query->fetchAll();
@@ -29,7 +30,7 @@
 			return $options;
 		}
 
-		public static function findByOption($id){
+		public static function find_by_option($id){
 			$query = DB::connection()->prepare('SELECT * FROM Option WHERE id = :id');
 			$query->execute(array('id' => $id));
 			$row = $query->fetch();
@@ -81,7 +82,7 @@
 			$query->execute(array('id' => $this->id, 'name' => $this->name, 'description' => $this->description));
 		}
 
-		public static function countVotes($id){
+		public static function count_votes($id){
 			$query = DB::connection()->prepare('SELECT COUNT(*) FROM Vote WHERE option_id = :id');
 			$query->execute(array('id' => $id));
 			$row = $query->fetch();
