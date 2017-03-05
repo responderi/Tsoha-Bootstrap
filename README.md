@@ -26,6 +26,7 @@ Osiin sivuista pääsee kirjautumisen ja uusien luotujen äänestyksien kautta, 
 * [Äänestyksien luontisivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/new)
 * [Äänestyksien muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/1/edit)
 * [Äänestyksien esittelysivu](http://rovarje.users.cs.helsinki.fi/aanestys/poll/1)
+* [Äänestyksen tulossivu (vaatii tekija tunnuksilla kirjautumisen)](http://rovarje.users.cs.helsinki.fi/aanestys/poll/1/results)
 * [Käyttäjän omasivu](http://rovarje.users.cs.helsinki.fi/aanestys/operator/1)
 * [Käyttäjän muokkaussivu](http://rovarje.users.cs.helsinki.fi/aanestys/operator/1/edit)
 * [Käyttäjien listaussivu (tälle ei ole vielä oikeata käyttöä keksitty)](http://rovarje.users.cs.helsinki.fi/aanestys/operators) 
