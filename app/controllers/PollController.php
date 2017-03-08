@@ -62,7 +62,7 @@
 			self::check_logged_in();
 			$operator = self::get_user_logged_in();
 			if($operator->id == $poll->creator){
-				$poll = array('poll' => Poll::find($id), 'options' => Options::find_by_poll($id));
+				$poll = array('poll' => Poll::find($id), 'options' => Option::find_by_poll($id));
 				View::make('poll/edit.html', $poll);
 			}
 			Redirect::to('/poll/' . $poll->id, array('message' => 'Vain äänestyksen tekijä voi muokata äänestystä!'));

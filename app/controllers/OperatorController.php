@@ -37,7 +37,7 @@ class OperatorController extends BaseController{
 		$operator = new Operator($attributes);
 		$errors = $operator->errors();
 		if(!($operator->find_name($params['name']) == null)){
-			View::make('operator/edit.html', array('errors' => 'Et voi vaihtaa nimeä jo olemassa olevaan!', 'operator' => $attributes));
+			$errors[] = 'Et voi vaihtaa nimeä jo olemassa olevaan!';
 		}
 		if(count($errors) > 0){
 			View::make('operator/edit.html', array('errors' => $errors, 'operator' => $attributes));	
